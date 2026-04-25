@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Vuka Academy | Double Your Income</title>
-
-<meta name="description" content="The South African Salary Negotiation Playbook. Aprenda a negociar o seu salário e aumentar os seus rendimentos com a Vuka Academy.">
-
-<link rel="icon" href="favicon.png" type="image/png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vuka Academy | Double Your Income</title>
+<meta name="description" content="The South African Salary Negotiation Playbook. Aprenda a negociar o seu salário e aumentar os seus rendimentos com a Vuka Academy.">
+<meta name="robots" content="index, follow">
+<!-- Open Graph (Facebook / WhatsApp preview) -->
+<meta property="og:title" content="Double Your Income — Vuka Academy">
+<meta property="og:description" content="The South African Salary Negotiation Playbook. Word-for-word scripts, ZAR salary benchmarks, and the exact plan to get the raise you deserve.">
+<meta property="og:image" content="img-social.jpg">
+<meta property="og:url" content="https://vukaacademy.co.za">
+<meta property="og:type" content="product">
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Double Your Income — Vuka Academy">
+<meta name="twitter:description" content="The South African Salary Negotiation Playbook. Get the raise you deserve.">
+<meta name="twitter:image" content="img-social.jpg">
+<!-- Favicon -->
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:wght@300;400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -47,15 +59,60 @@
     pointer-events: none; z-index: 9999; opacity: .4;
   }
 
-  /* ── NAV ── */
+  /* ── URGENCY BAR ── */
+  .urgency-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: var(--accent);
+    color: var(--black);
+    text-align: center;
+    padding: .55rem 1rem;
+    font-family: var(--font-body);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .urgency-bar .pulse {
+    display: inline-block;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--black);
+    animation: pulse 1.5s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .4; transform: scale(.7); }
+  }
+  .urgency-bar .countdown {
+    background: var(--black);
+    color: var(--accent);
+    padding: .2rem .7rem;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: .85rem;
+    letter-spacing: .1em;
+  }
+  .urgency-bar .close-bar {
+    position: absolute; right: 1rem;
+    background: none; border: none;
+    cursor: pointer; font-size: 1.1rem;
+    color: var(--black); opacity: .6;
+    padding: 0;
+  }
+  .urgency-bar .close-bar:hover { opacity: 1; }
+
+  /* ── NAV (push down for urgency bar) ── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    position: fixed; top: 38px; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.2rem 5%;
     background: rgba(10,10,10,.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,.04);
+    transition: top .3s;
   }
+  nav.bar-hidden { top: 0; }
   .logo {
     font-family: var(--font-display);
     font-size: 1.5rem;
@@ -82,10 +139,41 @@
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 8rem 5% 5rem;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    padding: 10rem 5% 5rem;
     position: relative;
     overflow: hidden;
+    gap: 3rem;
+  }
+  .hero-content {
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-image-col {
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .hero-image-col img {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 16px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 80px rgba(232,255,71,.12);
+    animation: floatBook 4s ease-in-out infinite;
+  }
+  @keyframes floatBook {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-14px); }
+  }
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 9rem 5% 4rem;
+      text-align: left;
+    }
+    .hero-image-col { margin-top: 2rem; }
+    .hero-image-col img { max-width: 280px; }
   }
 
   /* diagonal accent stripe */
@@ -94,7 +182,7 @@
     position: absolute;
     top: -20%; right: -10%;
     width: 55%; height: 140%;
-    background: linear-gradient(135deg, transparent 40%, rgba(232,255,71,.04) 40%, rgba(232,255,71,.04) 60%, transparent 60%);
+    background: linear-gradient(135deg, transparent 40%, rgba(232,255,71,.03) 40%, rgba(232,255,71,.03) 60%, transparent 60%);
     transform: rotate(-8deg);
     pointer-events: none;
   }
@@ -729,49 +817,58 @@
 </head>
 <body>
 
+<!-- URGENCY BAR -->
+<div class="urgency-bar" id="urgency-bar">
+  <span class="pulse"></span>
+  <span>🔥 Launch offer — First 50 copies at R 249. <strong><span id="copies-left">37</span> copies left</strong> at this price.</span>
+  <span class="countdown" id="countdown">23:47:12</span>
+  <button class="close-bar" onclick="closeBar()">✕</button>
+</div>
+
 <!-- NAV -->
-<nav>
+<nav id="main-nav">
   <a class="logo" href="#">VUKA <span>ACADEMY</span></a>
   <a class="nav-cta" href="#buy">Get the Book — R 249</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">South Africa's Career Playbook</div>
-  <h1>
-    <span>DOUBLE</span>
-    <span class="line-accent">YOUR</span>
-    <span class="line-stroke">INCOME</span>
-  </h1>
-  <p class="hero-sub">
-    Most professionals leave <strong>thousands of Rands on the table</strong> every year — not because they lack skill, but because nobody taught them how to ask. This book gives you the courage <em>and</em> the exact plan.
-  </p>
-  <div class="hero-cta-group">
-    <a href="#buy" class="btn-primary">
-      Get Instant Access <span class="arrow">→</span>
-    </a>
-    <div class="price-tag">Only <strong>R 249</strong> · PDF delivered instantly</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">South Africa's Career Playbook</div>
+    <h1>
+      <span>DOUBLE</span>
+      <span class="line-accent">YOUR</span>
+      <span class="line-stroke">INCOME</span>
+    </h1>
+    <p class="hero-sub">
+      Most professionals leave <strong>thousands of Rands on the table</strong> every year — not because they lack skill, but because nobody taught them how to ask. This book gives you the courage <em>and</em> the exact plan.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#buy" class="btn-primary">
+        Get Instant Access <span class="arrow">→</span>
+      </a>
+      <div class="price-tag">Only <strong>R 249</strong> · PDF delivered instantly</div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2<span>×</span></div>
+        <div class="stat-label">Income potential</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">7<span>+</span></div>
+        <div class="stat-label">Proven frameworks</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">SA<span>-</span>First</div>
+        <div class="stat-label">Local context & ZAR data</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30<span>d</span></div>
+        <div class="stat-label">Money-back guarantee</div>
+      </div>
+    </div>
   </div>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">2<span>×</span></div>
-      <div class="stat-label">Income potential</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">7<span>+</span></div>
-      <div class="stat-label">Proven frameworks</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">SA<span>-</span>First</div>
-      <div class="stat-label">Local context & ZAR data</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">30<span>d</span></div>
-      <div class="stat-label">Money-back guarantee</div>
-    </div>
-  </div>
-  <!-- Hero floating book image -->
-  <div class="hero-book-float">
+  <div class="hero-image-col">
     <img src="img-social.jpg" alt="Double Your Income — Vuka Academy" />
   </div>
 </section>
@@ -1135,6 +1232,64 @@
     document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+
+  // ── URGENCY BAR ──
+  function closeBar() {
+    const bar = document.getElementById('urgency-bar');
+    const nav = document.getElementById('main-nav');
+    bar.style.display = 'none';
+    nav.classList.add('bar-hidden');
+    sessionStorage.setItem('bar-closed', '1');
+  }
+
+  // Check if closed in this session
+  if (sessionStorage.getItem('bar-closed')) {
+    document.getElementById('urgency-bar').style.display = 'none';
+    document.getElementById('main-nav').classList.add('bar-hidden');
+  }
+
+  // ── COUNTDOWN TIMER ──
+  // Stores end time in localStorage so it persists across reloads (48h offer)
+  function getEndTime() {
+    let end = localStorage.getItem('vuka-offer-end');
+    if (!end) {
+      end = Date.now() + 48 * 60 * 60 * 1000; // 48 hours from first visit
+      localStorage.setItem('vuka-offer-end', end);
+    }
+    return parseInt(end);
+  }
+
+  function updateCountdown() {
+    const remaining = getEndTime() - Date.now();
+    if (remaining <= 0) {
+      document.getElementById('countdown').textContent = 'OFFER ENDED';
+      return;
+    }
+    const h = Math.floor(remaining / 3600000);
+    const m = Math.floor((remaining % 3600000) / 60000);
+    const s = Math.floor((remaining % 60000) / 1000);
+    document.getElementById('countdown').textContent =
+      String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ── COPIES LEFT (social proof simulation) ──
+  // Decreases slowly to simulate demand — starts at 37, min 12
+  function updateCopies() {
+    let copies = parseInt(localStorage.getItem('vuka-copies') || '37');
+    const lastUpdate = parseInt(localStorage.getItem('vuka-copies-time') || '0');
+    const hoursSince = (Date.now() - lastUpdate) / 3600000;
+    if (hoursSince > 2 && copies > 12) {
+      copies = Math.max(12, copies - Math.floor(Math.random() * 2 + 1));
+      localStorage.setItem('vuka-copies', copies);
+      localStorage.setItem('vuka-copies-time', Date.now());
+    }
+    const el = document.getElementById('copies-left');
+    if (el) el.textContent = copies;
+  }
+  updateCopies();
 
   // Smooth reveal on scroll
   const observer = new IntersectionObserver((entries) => {
