@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Double Your Income | SummitHub</title>
+<title>Double Your Income | Vuka Academy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:wght@300;400;500;600;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -617,6 +617,90 @@
   .footer-links a { font-size: .78rem; color: #555; text-decoration: none; }
   .footer-links a:hover { color: var(--muted); }
 
+  /* ── HERO FLOATING BOOK ── */
+  .hero-book-float {
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(340px, 35vw);
+    z-index: 1;
+    animation: floatBook 4s ease-in-out infinite;
+  }
+  .hero-book-float img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 60px rgba(232,255,71,.1);
+  }
+  @keyframes floatBook {
+    0%, 100% { transform: translateY(-50%) translateY(0px); }
+    50% { transform: translateY(-50%) translateY(-12px); }
+  }
+  @media (max-width: 900px) {
+    .hero-book-float { display: none; }
+  }
+
+  /* ── REAL BOOK IMAGE ── */
+  .book-real-img {
+    width: 280px;
+    border-radius: 8px;
+    transform: rotate(-2deg);
+    transition: transform .3s, box-shadow .3s;
+    box-shadow: 20px 20px 60px rgba(0,0,0,.7), 0 0 40px rgba(232,255,71,.08);
+    display: block;
+  }
+  .book-real-img:hover {
+    transform: rotate(0deg) scale(1.03);
+    box-shadow: 24px 24px 80px rgba(0,0,0,.8), 0 0 60px rgba(232,255,71,.15);
+  }
+
+  /* ── MOCKUP GALLERY ── */
+  .mockup-gallery {
+    padding: 6rem 5%;
+    background: var(--black);
+  }
+  .gallery-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--white); line-height: 1;
+    margin-bottom: 2.5rem;
+  }
+  .gallery-title span { color: var(--accent); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .gallery-item {
+    position: relative; border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    cursor: default;
+  }
+  .gallery-item:hover {
+    transform: translateY(-6px);
+    border-color: rgba(232,255,71,.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,.5);
+  }
+  .gallery-item img {
+    width: 100%; display: block;
+    object-fit: cover;
+  }
+  .gallery-main { grid-row: span 1; }
+  .gallery-badge {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 100%);
+    padding: 2rem 1rem .75rem;
+    font-size: .8rem; color: var(--accent);
+    font-family: var(--font-mono); letter-spacing: .08em;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .book-real-img { width: 220px; }
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -643,7 +727,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="logo" href="#">SUMMIT<span>HUB</span></a>
+  <a class="logo" href="#">VUKA <span>ACADEMY</span></a>
   <a class="nav-cta" href="#buy">Get the Book — R 249</a>
 </nav>
 
@@ -681,6 +765,10 @@
       <div class="stat-num">30<span>d</span></div>
       <div class="stat-label">Money-back guarantee</div>
     </div>
+  </div>
+  <!-- Hero floating book image -->
+  <div class="hero-book-float">
+    <img src="img-social.jpg" alt="Double Your Income — Vuka Academy" />
   </div>
 </section>
 
@@ -726,14 +814,7 @@
 <!-- SOLUTION -->
 <section class="solution">
   <div class="book-mockup">
-    <div class="book-cover">
-      <div class="book-cover-badge">NEW</div>
-      <div class="book-cover-logo">SUMMITHUB</div>
-      <div class="book-cover-icon">⚡</div>
-      <div class="book-cover-line"></div>
-      <div class="book-cover-title">DOUBLE <span>YOUR INCOME</span></div>
-      <div class="book-cover-sub">The SA Salary Playbook</div>
-    </div>
+    <img src="img-book3d.jpg" alt="Double Your Income — Vuka Academy Ebook" class="book-real-img" />
     <div class="book-shadow"></div>
   </div>
   <div class="solution-content">
@@ -853,6 +934,26 @@
         <div class="ch-desc">A day-by-day plan to go from reading this book to having the conversation — in under a month.</div>
       </div>
       <div class="ch-tag tag-bonus">Bonus</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUP GALLERY -->
+<section class="mockup-gallery">
+  <div class="section-label">Read it everywhere</div>
+  <h2 class="gallery-title">Your career upgrade.<br><span>On any device.</span></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-main">
+      <img src="img-phone.jpg" alt="Double Your Income on iPhone" loading="lazy" />
+      <div class="gallery-badge">📱 Read on your phone</div>
+    </div>
+    <div class="gallery-item">
+      <img src="img-tablet.jpg" alt="Double Your Income on tablet — flat lay with payslip" loading="lazy" />
+      <div class="gallery-badge">📋 Real results</div>
+    </div>
+    <div class="gallery-item">
+      <img src="img-laptop.jpg" alt="Double Your Income open on MacBook" loading="lazy" />
+      <div class="gallery-badge">💻 Study at your desk</div>
     </div>
   </div>
 </section>
@@ -1014,12 +1115,12 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">SUMMIT<span>HUB</span></div>
-  <div class="footer-text">© 2025 SummitHub · Midrand, South Africa · summithub.co.za</div>
+  <div class="footer-logo">VUKA <span>ACADEMY</span></div>
+  <div class="footer-text">© 2025 Vuka Academy · Midrand, South Africa · vukaacademy.co.za</div>
   <div class="footer-links">
     <a href="#">Privacy</a>
     <a href="#">Terms</a>
-    <a href="mailto:hello@summithub.co.za">Contact</a>
+    <a href="mailto:hello@vukaacademy.co.za">Contact</a>
   </div>
 </footer>
 
