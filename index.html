@@ -136,41 +136,61 @@
   }
   .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,255,71,.25); }
 
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 48% 52%;
-    align-items: center;
+    grid-template-rows: 1fr auto;
     padding: 0;
     position: relative;
     overflow: hidden;
     gap: 0;
   }
   .hero-content {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 10rem 4% 5rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10rem 5% 3rem 5%;
+    grid-column: 1;
+    grid-row: 1;
   }
   .hero-image-col {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    overflow: hidden;
     min-height: 100vh;
-    padding: 7rem 2% 3rem 0;
   }
   .hero-image-col img {
     width: 100%;
-    max-width: 780px;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
     display: block;
-    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.6)) drop-shadow(0 0 60px rgba(232,255,71,0.08));
-    animation: floatBook 5s ease-in-out infinite;
   }
-  /* No overlay needed — PNG is transparent */
   .hero-image-col::before {
-    display: none;
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 80px;
+    background: linear-gradient(to right, var(--black), transparent);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-image-col img.img-desktop { display: block; }
+  .hero-image-col img.img-mobile { display: none; }
+  .hero-stats-wrap {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0 5% 3rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
   }
   @keyframes floatBook {
     0%, 100% { transform: translateY(0px); }
@@ -178,30 +198,42 @@
   }
   @media (max-width: 900px) {
     .hero {
-      grid-template-columns: 1fr;
+      display: block;
       min-height: auto;
-      display: flex;
-      flex-direction: column;
+      padding: 0;
     }
     .hero-content {
-      padding: 8rem 4% 1rem;
-      order: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 7rem 4% 1.5rem;
     }
     .hero-image-col {
+      display: block;
       min-height: auto;
-      padding: 1rem 4% 1rem;
-      order: 2;
+      padding: 0;
+      overflow: hidden;
     }
     .hero-image-col img {
-      max-width: 100%;
-      animation: none;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
+    .hero-image-col img.img-desktop { display: none; }
+    .hero-image-col img.img-mobile {
+      display: block;
+      width: 85%;
+      max-width: 340px;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+    .hero-image-col::before { display: none; }
     .hero-stats-wrap {
-      order: 3;
       padding: 0 4% 3rem;
     }
     .hero-stats {
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
   }
 
@@ -1060,7 +1092,7 @@
 
     /* Solution */
     .solution { padding: 3.5rem 4%; }
-    .book-real-img { max-width: 100% !important; }
+    .book-real-img { max-width: 420px !important; margin: 0 auto; display: block; }
 
     /* Chapters */
     .chapters { padding: 3.5rem 4%; }
@@ -1154,7 +1186,8 @@
     </div>
   </div>
   <div class="hero-image-col">
-    <img src="img-hero-devices.png" alt="Double Your Income — disponível em todos os dispositivos" />
+    <img class="img-desktop" src="img-hero-devices.png" alt="Double Your Income — disponível em todos os dispositivos" />
+    <img class="img-mobile" src="img-book3d.png" alt="Double Your Income — Vuka Academy" />
   </div>
   <div class="hero-stats-wrap">
     <div class="hero-stats">
