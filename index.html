@@ -140,30 +140,37 @@
   .hero {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 10rem 5% 5rem;
+    grid-template-columns: 55% 45%;
+    align-items: stretch;
+    padding: 0;
     position: relative;
     overflow: hidden;
-    gap: 2rem;
+    gap: 0;
   }
   .hero-content {
     display: flex; flex-direction: column; justify-content: center;
+    padding: 10rem 5% 5rem 5%;
   }
   .hero-image-col {
-    display: flex; align-items: center; justify-content: flex-end;
     position: relative;
-    height: 100%;
-    min-height: 600px;
+    overflow: hidden;
+    min-height: 100vh;
   }
   .hero-image-col img {
     width: 100%;
-    max-width: 520px;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 40px 100px rgba(0,0,0,.8), 0 0 100px rgba(232,255,71,.15);
-    animation: floatBook 4s ease-in-out infinite;
+    height: 100%;
     object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  /* Dark gradient overlay on left edge of image to blend with content */
+  .hero-image-col::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 120px;
+    background: linear-gradient(to right, var(--black), transparent);
+    z-index: 1;
+    pointer-events: none;
   }
   @keyframes floatBook {
     0%, 100% { transform: translateY(0px); }
@@ -172,14 +179,17 @@
   @media (max-width: 900px) {
     .hero {
       grid-template-columns: 1fr;
-      padding: 9rem 5% 4rem;
+      min-height: auto;
+    }
+    .hero-content {
+      padding: 8rem 4% 2.5rem;
+      order: 1;
     }
     .hero-image-col {
-      justify-content: center;
-      min-height: auto;
-      margin-top: 2rem;
+      min-height: 55vw;
+      order: 2;
     }
-    .hero-image-col img { max-width: 320px; }
+    .hero-image-col::before { display: none; }
   }
 
   /* diagonal accent stripe */
@@ -373,13 +383,27 @@
     padding: 6rem 5%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 4rem;
     align-items: center;
   }
 
   .book-mockup {
     position: relative;
-    display: flex; justify-content: center;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 500px;
+  }
+  .book-real-img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 24px 24px 80px rgba(0,0,0,.8), 0 0 60px rgba(232,255,71,.12);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .book-real-img:hover {
+    transform: scale(1.03) rotate(1deg);
+    box-shadow: 30px 30px 100px rgba(0,0,0,.9), 0 0 80px rgba(232,255,71,.2);
   }
   .book-cover {
     width: 240px;
@@ -849,35 +873,45 @@
   }
   .footer-top {
     padding: 4rem 5% 3rem;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
   }
-  .footer-brand {}
-  .footer-logo { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: .12em; color: var(--white); margin-bottom: .3rem; }
+  .footer-cols {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .footer-brand { text-align: center; }
+  .footer-logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: .12em; color: var(--white); margin-bottom: .3rem; }
   .footer-logo span { color: var(--accent); }
-  .footer-tagline { font-size: .8rem; color: var(--muted); margin-bottom: 1rem; font-family: var(--font-mono); letter-spacing: .08em; }
+  .footer-tagline { font-size: .8rem; color: var(--muted); margin-bottom: .75rem; font-family: var(--font-mono); letter-spacing: .08em; }
   .footer-contact { font-size: .85rem; color: var(--muted); }
   .footer-contact a { color: var(--muted); text-decoration: none; transition: color .15s; }
   .footer-contact a:hover { color: var(--accent); }
-  .footer-col { display: flex; flex-direction: column; gap: .6rem; }
+  .footer-col { display: flex; flex-direction: column; gap: .6rem; align-items: center; text-align: center; }
   .footer-col-title { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--white); font-family: var(--font-mono); margin-bottom: .25rem; }
   .footer-col a { font-size: .85rem; color: var(--muted); text-decoration: none; transition: color .15s; }
   .footer-col a:hover { color: var(--accent); }
+  .footer-divider {
+    width: 100%; max-width: 600px;
+    height: 1px; background: var(--border);
+  }
   .footer-bottom {
     padding: 1.25rem 5%;
     border-top: 1px solid rgba(255,255,255,.05);
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: .75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: .5rem;
   }
   .footer-bottom-left { font-size: .75rem; color: #444; }
-  .footer-bottom-right { font-size: .75rem; color: #444; display: flex; align-items: center; gap: .4rem; }
+  .footer-bottom-right { font-size: .75rem; color: #444; display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; justify-content: center; }
   .footer-bottom-right strong { color: var(--muted); }
-  @media (max-width: 768px) {
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .footer-brand { grid-column: span 2; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-  }
 
   /* ── MODALS ── */
   .modal-overlay {
@@ -1487,22 +1521,25 @@
         📧 <a href="mailto:hello@vukaacademy.co.za">hello@vukaacademy.co.za</a>
       </div>
     </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Product</div>
-      <a href="#buy">Get the Book</a>
-      <a href="#chapters">What's Inside</a>
-      <a href="#buy">Pricing</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Legal</div>
-      <a href="#privacy" onclick="openModal('privacy')">Privacy Policy</a>
-      <a href="#terms" onclick="openModal('terms')">Terms & Conditions</a>
-      <a href="#refund" onclick="openModal('refund')">Refund Policy</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Support</div>
-      <a href="mailto:hello@vukaacademy.co.za">Contact Us</a>
-      <a href="#faq">FAQ</a>
+    <div class="footer-divider"></div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title">Product</div>
+        <a href="#buy">Get the Book</a>
+        <a href="#chapters">What's Inside</a>
+        <a href="#buy">Pricing</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <a href="#privacy" onclick="openModal('privacy')">Privacy Policy</a>
+        <a href="#terms" onclick="openModal('terms')">Terms & Conditions</a>
+        <a href="#refund" onclick="openModal('refund')">Refund Policy</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="mailto:hello@vukaacademy.co.za">Contact Us</a>
+        <a href="#faq">FAQ</a>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
