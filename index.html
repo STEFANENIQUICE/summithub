@@ -180,15 +180,28 @@
     .hero {
       grid-template-columns: 1fr;
       min-height: auto;
+      display: flex;
+      flex-direction: column;
     }
     .hero-content {
-      padding: 8rem 4% 2.5rem;
+      padding: 8rem 4% 1rem;
       order: 1;
     }
     .hero-image-col {
       min-height: auto;
-      padding: 1rem 4% 3rem;
+      padding: 1rem 4% 1rem;
       order: 2;
+    }
+    .hero-image-col img {
+      max-width: 100%;
+      animation: none;
+    }
+    .hero-stats-wrap {
+      order: 3;
+      padding: 0 4% 3rem;
+    }
+    .hero-stats {
+      gap: 1.5rem;
     }
   }
 
@@ -278,8 +291,12 @@
   }
   .price-tag strong { color: var(--accent2); font-size: 1.1rem; font-family: var(--font-body); font-weight: 700; }
 
+  .hero-stats-wrap {
+    grid-column: 1 / -1;
+    padding: 0 5% 4rem;
+  }
   .hero-stats {
-    display: flex; gap: 2.5rem; margin-top: 4rem;
+    display: flex; gap: 2.5rem;
     padding-top: 2.5rem;
     border-top: 1px solid var(--border);
     flex-wrap: wrap;
@@ -1135,6 +1152,11 @@
       </a>
       <div class="price-tag">Only <strong>R 249</strong> · PDF delivered instantly</div>
     </div>
+  </div>
+  <div class="hero-image-col">
+    <img src="img-hero-devices.png" alt="Double Your Income — disponível em todos os dispositivos" />
+  </div>
+  <div class="hero-stats-wrap">
     <div class="hero-stats">
       <div class="stat-item">
         <div class="stat-num">2<span>×</span></div>
@@ -1153,9 +1175,6 @@
         <div class="stat-label">Money-back guarantee</div>
       </div>
     </div>
-  </div>
-  <div class="hero-image-col">
-    <img src="img-hero-devices.png" alt="Double Your Income — disponível em todos os dispositivos" />
   </div>
 </section>
 
