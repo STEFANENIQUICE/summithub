@@ -140,8 +140,8 @@
   .hero {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 55% 45%;
-    align-items: stretch;
+    grid-template-columns: 48% 52%;
+    align-items: center;
     padding: 0;
     position: relative;
     overflow: hidden;
@@ -149,28 +149,28 @@
   }
   .hero-content {
     display: flex; flex-direction: column; justify-content: center;
-    padding: 10rem 5% 5rem 5%;
+    padding: 10rem 4% 5rem 5%;
   }
   .hero-image-col {
     position: relative;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
+    padding: 7rem 2% 3rem 0;
   }
   .hero-image-col img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
+    max-width: 640px;
+    height: auto;
+    object-fit: contain;
     display: block;
+    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.6)) drop-shadow(0 0 60px rgba(232,255,71,0.08));
+    animation: floatBook 5s ease-in-out infinite;
   }
-  /* Dark gradient overlay on left edge of image to blend with content */
+  /* No overlay needed — PNG is transparent */
   .hero-image-col::before {
-    content: '';
-    position: absolute; top: 0; left: 0; bottom: 0;
-    width: 120px;
-    background: linear-gradient(to right, var(--black), transparent);
-    z-index: 1;
-    pointer-events: none;
+    display: none;
   }
   @keyframes floatBook {
     0%, 100% { transform: translateY(0px); }
@@ -186,10 +186,10 @@
       order: 1;
     }
     .hero-image-col {
-      min-height: 55vw;
+      min-height: auto;
+      padding: 1rem 4% 3rem;
       order: 2;
     }
-    .hero-image-col::before { display: none; }
   }
 
   /* diagonal accent stripe */
@@ -1157,7 +1157,7 @@
     </div>
   </div>
   <div class="hero-image-col">
-    <img src="img-social.jpg" alt="Double Your Income — Vuka Academy" />
+    <img src="img-hero-devices.webp" alt="Double Your Income — disponível em todos os dispositivos" />
   </div>
 </section>
 
@@ -1212,7 +1212,7 @@
 <!-- SOLUTION -->
 <section class="solution">
   <div class="book-mockup">
-    <img src="img-book3d.jpg" alt="Double Your Income — Vuka Academy Ebook" class="book-real-img" />
+    <img src="img-book3d.webp" alt="Double Your Income — Vuka Academy Ebook" class="book-real-img" />
     <div class="book-shadow"></div>
   </div>
   <div class="solution-content">
